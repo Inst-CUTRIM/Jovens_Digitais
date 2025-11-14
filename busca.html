@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Buscar Meu Certificado - Prefeitura Lima Campos</title>
+    <link rel="stylesheet" href="busca.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-bar">
+            <img src="LIMA CAMPOS.png" alt="Logo da Prefeitura" class="logo" id="logoPref">
+            
+            <img src="SEMJUV.jpg" alt="Logo SEMJUV" class="logo" id="logoSemjuv">
+            
+            <img src="SEMED.jpeg" alt="Logo SMED" class="logo" id="logoCcpj">
+           <img src="CENTRO DE CAPACITAÇÃO PJ.png" alt="Logo CCPJ" class="logo" id="logoSemjuv">
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="parabens-section">
+            
+            <div class="texto-container busca-form-container-wrapper">
+                <div class="busca-form-box">
+                    <h2>Buscar Seu Certificado</h2>
+                    
+                    <form id="formBuscaCertificado">
+                        
+                        <label for="nomeCompleto">Seu Nome Completo:</label><br> 
+                        <input type="text" id="nomeCompleto" required placeholder="Digite seu nome completo">
+                        
+                        <input type="hidden" id="nomeCurso" value="OUTROS CURSOS">
+
+                        <button type="submit" class="btn-principal">
+                            Ver o Certificado
+                        </button>
+                        
+                        <section class="motivacao-final">
+                            <h3>Sua Formação é o Nosso Orgulho!</h3>
+                            <p>Acreditamos no seu potencial. Este certificado é a chave para a próxima etapa do seu sucesso profissional. Dê o primeiro passo!</p>
+                        </section>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="banner-img-container">
+                <img src="farol.jpg" alt="Panda Formando" class="banner-img" id="formando-img-animada-busca"> 
+            </div>
+
+        </section>
+        
+        <section id="areaPrevia" class="hidden">
+        </section>
+
+        <div id="mensagem" class="hidden mensagem-orientacao">
+        </div>
+    </main>
+
+    <section class="redes-sociais">
+        <h3>Siga e Mantenha-se Informado!</h3>
+        <div class="social-links-container">
+            <a href="https://www.instagram.com/prefeituralimacampos?igsh=dHU2MHl4NXZwNjd4" target="_blank" aria-label="Instagram da Prefeitura" class="social-link instagram-link"><i class="fab fa-instagram"></i> Instagram - Prefeitura</a>
+            <a href="https://www.instagram.com/semedlc?igsh=ejcwazcyaWJoazZ3" target="_blank" aria-label="Instagram da SEMED" class="social-link instagram-link"><i class="fab fa-instagram"></i> Instagram - SEMED</a>
+            <a href="https://www.instagram.com/semjuvlc?igsh=NW52enhqMmQzZW53" target="_blank" aria-label="Instagram da SEMJUV" class="social-link instagram-link"><i class="fab fa-instagram"></i> Instagram - SEMJUV</a>
+            <a href="https://www.limacampos.ma.gov.br/" target="_blank" aria-label="Site Oficial da Prefeitura" class="social-link site-link"><i class="fas fa-globe"></i> Site da Prefeitura</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Prefeitura de Lima Campos, SEMD, SEMJUV e CCPJ. Todos os direitos reservados.</p>
+    </footer>
+
+   <script src="script.js?v=999"></script> 
+</body>
+</html>

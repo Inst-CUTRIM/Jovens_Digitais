@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Funcionário – SEMJUV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+        /* Estilos Globais e de Layout (MANTIDOS) */
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #333; }
+        header { background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 10px 0; }
+        .logo-bar { display: flex; justify-content: center; align-items: center; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .logo { height: 50px; }
+
+        .dashboard-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px 0;
+            min-height: 80vh;
+        }
+
+        .dashboard-layout {
+            display: flex;
+            max-width: 1200px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+            width: 95%;
+            min-height: 600px;
+        }
+
+        /* Menu Lateral */
+        .dashboard-menu-side {
+            flex: 0.3;
+            background-color: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-right: 1px solid #e0e0e0;
+        }
+        .dashboard-menu-side h3 {
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Conteúdo Principal */
+        .dashboard-content-side {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .dashboard-content-side h2 {
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        /* Botões de Ação */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn-action:hover {
+            transform: scale(1.02);
+        }
+        .btn-action i {
+            margin-right: 8px;
+        }
+        .btn-action.add { background-color: #28a745; }
+        .btn-action.add:hover { background-color: #218838; }
+        .btn-action.alter { background-color: #ffc107; color: #333; }
+        .btn-action.alter:hover { background-color: #e0a800; }
+        .btn-action.report { background-color: #17a2b8; } 
+        .btn-action.report:hover { background-color: #138496; }
+        .btn-action.exit { background-color: #dc3545; margin-top: auto; }
+        .btn-action.exit:hover { background-color: #c82333; }
+
+        /* Painéis de Dados */
+        .dashboard-data { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .data-panel {
+            background-color: #fff; 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 0;
+            border: 1px solid #e0e0e0;
+        }
+        .data-panel-full { flex: 1 1 100%; margin-top: 30px; }
+        .data-panel h3 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2em;
+        }
+        .downloads-list {
+            list-style: none;
+            padding: 0;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        .downloads-list li {
+            border-bottom: 1px dashed #eee;
+            padding: 8px 0;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        .downloads-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Gráfico */
+        .chart-placeholder {
+            height: 350px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+        .chart-container-wrapper {
+            position: relative;
+            min-height: 350px;
+        }
+
+        /* 🔵 PAINEL DE MATRÍCULA CCPJ */
+        #ccpj-display-panel {
+            width: 100%;
+            background: linear-gradient(to right, #ffc107, #ffc107);
+            color: rgb(22, 22, 22);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            font-size: 20PX;
+            text-align: center;
+        }
+        #ccpj-display-panel span {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-left: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #343a40;
+            color: #f8f9fa;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo-bar">
+        <a href="index.html"><img src="LIMA CAMPOS.png" class="logo"></a>
+        <img src="SEMJUV.jpg" class="logo">
+        <img src="SEMED.jpeg" class="logo">
+        <img src="CENTRO DE CAPACITAÇÃO PJ.png" class="logo">
+    </div>
+</header>
+
+<main>
+    <section class="dashboard-section">
+        <div class="dashboard-layout">
+
+            <div class="dashboard-menu-side">
+                <h3>Menu de Ações</h3>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd7mzG5BjvSSR5O1x8WPERWNUra-I7Nu79OkHcVCUBzK36T1g/viewform?usp=dialog" target="_blank" class="btn-action add">
+                    <i class="fas fa-plus-circle"></i> Adicionar Certificado
+                </a>
+
+                <!-- 🔥 ALTERAÇÃO FEITA AQUI -->
+                <a href="#" id="btnAlterarCertificado" class="btn-action alter">
+                    <i class="fas fa-edit"></i> Alterar Certificado
+                </a>
+
+                <a href="#" id="btnVerRelatorio" class="btn-action report">
+                    <i class="fas fa-file-alt"></i> Ver Relatório Completo
+                </a>
+
+                <a href="login.html" class="btn-action exit">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </div>
+
+            <div class="dashboard-content-side">
+                <h2><i class="fas fa-chart-line"></i> Painel de Gerenciamento – SEMJUV</h2>
+
+                <!-- PAINEL CCPJ -->
+                <div id="ccpj-display-panel">
+                    <strong>Última Matrícula CCPJ Inserida:</strong>
+                    <span id="ccpj-number">---</span>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Utilize este número como referência para o próximo registro.</p>
+                </div>
+
+                <!-- LISTA DE DOWNLOADS -->
+                <div class="dashboard-data data-panel-full">
+                    <div class="data-panel">
+                        <h3><i class="fas fa-download"></i> Últimos Downloads (Certificados Emitidos)</h3>
+                        <ul class="downloads-list" id="listaUltimosDownloads">
+                            <li style="text-align:center;color:#6c757d;">Carregando dados...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- GRÁFICO -->
+                <div class="dashboard-data data-panel-full">
+                    <div class="data-panel">
+                        <h3><i class="fas fa-chart-bar"></i> Alunos por Curso</h3>
+                        <div class="chart-container-wrapper">
+                            <canvas id="cursoChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Prefeitura de Lima Campos, SEMED, SEMJUV e CCPJ.</p>
+</footer>
+
+<script>
+const CACHE_BUSTER = new Date().getTime();
+const SHEET_ID = '14ief5dGshoyk7moisNLPrHjkImzyQbomYV6qP48qNBk';
+const GID_FONTE_DADOS = '2012994892';
+const FORM_ALTERAR_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdIcegzIL7PahDBLUfaqbMbfC4I0-NmuD-kEYXxXvaBKPYtCQ/viewform?usp=dialog';
+const GID_RELATORIO_COMPLETO = '1729095432';
+const URL_RELATORIO_COMPLETO = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit#gid=${GID_RELATORIO_COMPLETO}`;
+const SHEET_URL_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID_FONTE_DADOS}&v=${CACHE_BUSTER}`;
+
+// 🔥 Aqui foi alterado!
+document.getElementById('btnAlterarCertificado').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.open(FORM_ALTERAR_URL, '_self'); // Apenas o formulário abre
+});
+
+document.getElementById('btnVerRelatorio').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.open(URL_RELATORIO_COMPLETO, '_blank');
+});
+
+async function carregarDadosPlanilha() {
+    const response = await fetch(SHEET_URL_CSV);
+    const csv = await response.text();
+    const linhas = csv.split('\n').slice(1).filter(l => l.trim() !== '');
+
+    return linhas.map(linha => {
+        const col = linha.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+        return {
+            carimbo: col[0],
+            nomeAluno: col[1],
+            nomeCurso: col[2],
+            urlPdf: col[3]
+        };
+    });
+}
+
+async function popularListaUltimosDownloads() {
+    const lista = document.getElementById("listaUltimosDownloads");
+    const dados = await carregarDadosPlanilha();
+    const emitidos = dados.filter(x => x.urlPdf.trim() !== '').reverse().slice(0, 10);
+
+    lista.innerHTML = "";
+
+    emitidos.forEach(item => {
+        lista.innerHTML += `<li><b>${item.nomeAluno}</b>: ${item.nomeCurso} (${item.carimbo})</li>`;
+    });
+}
+
+async function carregarDadosParaGrafico() {
+    const dados = await carregarDadosPlanilha();
+    const contagem = {};
+
+    dados.forEach(item => {
+        if (item.urlPdf.trim() !== '') {
+            contagem[item.nomeCurso] = (contagem[item.nomeCurso] || 0) + 1;
+        }
+    });
+
+    return contagem;
+}
+
+function gerarCores(qtd) {
+    return Array.from({ length: qtd }, (_, i) =>
+        `hsl(${i * (360 / qtd)}, 70%, 55%)`
+    );
+}
+
+async function desenharGraficoColunas() {
+    const dados = await carregarDadosParaGrafico();
+    const labels = Object.keys(dados);
+    const valores = Object.values(dados);
+
+    if (labels.length === 0) return;
+
+    new Chart(document.getElementById("cursoChart"), {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Certificados Emitidos",
+                data: valores,
+                backgroundColor: gerarCores(labels.length)
+            }]
+        }
+    });
+}
+
+// 🔵 ULTIMA MATRÍCULA CCPJ
+async function carregarUltimaMatricula() {
+    try {
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID_FONTE_DADOS}&v=${CACHE_BUSTER}`;
+        const response = await fetch(url);
+        const csv = await response.text();
+
+        const linhas = csv.split("\n").slice(1).filter(l => l.trim() !== "");
+        const ultima = linhas.pop();
+        const cols = ultima.split(",");
+
+        document.getElementById("ccpj-number").innerText = cols[1];
+    } catch (e) {
+        document.getElementById("ccpj-number").innerText = "Erro";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    popularListaUltimosDownloads();
+    desenharGraficoColunas();
+    carregarUltimaMatricula();
+});
+</script>
+
+</body>
+</html>

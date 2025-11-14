@@ -1,0 +1,288 @@
+/* ========================================================================= */
+/* --- SEÇÃO GERAL E ESTRUTURA BÁSICA DO BODY --- */
+/* ========================================================================= */
+/* GERAL E FUNDO CINZA */
+body {
+    /* Define a fonte padrão para o documento */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Define a cor de fundo cinza suave */
+    background-color: #e0e0e0; 
+    /* Define a cor do texto principal */
+    color: #333;
+    /* Define o espaçamento entre linhas */
+    line-height: 1.6;
+    /* Remove margens e preenchimentos padrão do navegador */
+    margin: 0;
+    padding: 0;
+    /* --- CORREÇÃO FINAL: BLOQUEIA QUALQUER ROLAGEM INDESEJADA --- */
+    overflow-y: auto; /* Permite a barra de rolagem vertical */
+    scroll-behavior: auto !important; /* Ação: ANULA o scroll suave do navegador */
+    /* ---------------------------------------------------------------- */
+}
+
+/* --- ESTRUTURA DO CABEÇALHO (HEADER) --- */
+header {
+    /* Cor de fundo branca para o cabeçalho */
+    background-color: #ffffff;
+    /* Espaçamento interno vertical */
+    padding: 10px 0;
+    /* Sombra suave abaixo do cabeçalho */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Borda inferior de destaque */
+    border-bottom: 5px solid #FFD700; /* Borda dourada */
+}
+
+/* BARRA DE LOGOS */
+.logo-bar {
+    /* Usa Flexbox para alinhamento */
+    display: flex; 
+    /* Espalha os logos horizontalmente */
+    justify-content: space-around; 
+    /* Alinha verticalmente ao centro */
+    align-items: center; 
+    /* Largura máxima do conteúdo centralizado */
+    max-width: 900px;
+    /* Centraliza a barra */
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.logo {
+    /* Altura fixa para os logos */
+    height: 90px;
+    width: auto;
+    /* Garante que a imagem se ajuste sem cortar */
+    object-fit: contain; 
+}
+
+/* ========================================================================= */
+/* --- SEÇÃO DE LAYOUT E COLUNAS --- */
+/* ========================================================================= */
+
+/* CONTEÚDO PRINCIPAL */
+main {
+    /* Largura máxima do conteúdo principal */
+    max-width: 1000px; 
+    /* Centraliza na tela */
+    margin: 20px auto;
+    /* Preenchimento interno */
+    padding: 20px;
+}
+
+/* SEÇÃO DE PARABÉNS (CONTAINER PRINCIPAL DE CONTEÚDO) */
+.parabens-section {
+    /* Usa Flexbox para as colunas */
+    display: flex; 
+    /* Permite quebra de linha em telas menores */
+    flex-wrap: wrap; 
+    /* Fundo branco */
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    /* Sombra do container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Base das Colunas (Larguras de DESKTOP) */
+.texto-container {
+    /* Largura para a coluna de texto */
+    width: 45%; 
+    padding-right: 20px;
+}
+.banner-img-container {
+    /* Largura para a coluna da imagem */
+    width: 50%;
+    margin-bottom: 0;
+    padding: 0 10px;
+}
+.busca-form-container-wrapper {
+    /* Largura para a coluna do formulário (mantenha 45% para layout de duas colunas) */
+    width: 45%; 
+    padding-right: 20px;
+}
+
+/* ========================================================================= */
+/* --- SEÇÃO DE FORMULÁRIO (BUSCA) --- */
+/* ========================================================================= */
+
+/* CONTAINER DA CAIXA DE FORMULÁRIO */
+.busca-form-box {
+    /* Fundo branco */
+    background-color: #ffffff; 
+    /* Preenchimento interno grande */
+    padding: 30px; 
+    border-radius: 10px;
+    /* Sombra profunda */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.busca-form-box h2 {
+    /* Cor do título do formulário */
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.busca-form-box label {
+    /* Garante que o rótulo ocupe a linha toda */
+    display: block;
+    /* Define o espaçamento do rótulo (LABEL) */
+    margin: 18px 0 6px; 
+    /* Deixa o texto em negrito */
+    font-weight: 600; 
+    /* Tamanho da fonte do rótulo */
+    font-size: 26px; 
+    color: #131213;
+}
+
+
+.busca-form-box input[type="text"],
+.busca-form-box select { 
+    /* --- CORREÇÃO: Força o INPUT a ir para uma nova linha e a ter largura total. */
+    display: block; 
+    width: 100%;
+    padding: 12px; 
+    /* Espaço abaixo do campo, separando-o dos elementos seguintes */
+    margin-bottom: 20px; 
+    /* Borda do campo */
+    border: 2px solid #ccc; 
+    border-radius: 6px; 
+    /* Garante que padding e border sejam incluídos na largura (100%) */
+    box-sizing: border-box;
+    font-size: 1.1em; 
+}
+
+/* BOTÃO PRINCIPAL (Dourado) */
+.btn-principal {
+    display: inline-block;
+    /* Cor de fundo do botão */
+    background-color: #FFD700; 
+    color: #333; 
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 25px; 
+    font-size: 1.5em; 
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    /* *** AJUSTE: AUMENTA A MARGEM SUPERIOR PARA DESCER O BOTÃO *** */
+    /* Valor ajustado para 18px (o valor original solicitado por último) */
+    margin-top: 18px; 
+}
+
+/* ========================================================================= */
+/* --- SEÇÃO DE ANIMAÇÕES E EXTRAS --- */
+/* ========================================================================= */
+
+/* ESTILOS DE ANIMAÇÃO */
+@keyframes move-horizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(20px); } 
+}
+#formando-img-animada-busca {
+    animation: move-horizontal 4s infinite alternate ease-in-out;
+}
+.banner-img {
+    width: 100%;
+    height: auto;
+    display: block; 
+}
+
+/* ESTILOS DE RESULTADOS E MENSAGENS */
+.hidden { display: none; }
+.certificado-previa {
+    margin: 20px 0;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #ddddda;
+    box-shadow: 0 2px 5px rgba(15, 15, 15, 0.973);
+    font-size: 20px; 
+    font-weight: bold;
+}
+.mensagem-orientacao {
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid;
+}
+/* Estilos de Redes Sociais e Responsividade */
+.social-links-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+    margin-top: 15px;
+}
+/* ... (Mantenha o restante do seu CSS para redes sociais, rodapé e media queries) ... */
+
+
+/* ========================================================================= */
+/* --- MEDIA QUERIES (RESPONSIVIDADE PARA CELULARES) --- */
+/* ========================================================================= */
+
+@media (max-width: 768px) {
+    /* 1. CABEÇALHO E LOGOS */
+    .logo-bar {
+        /* Centraliza os logos e permite quebra de linha */
+        flex-wrap: wrap; 
+        justify-content: space-around; /* Mantém espaço entre eles, mas centraliza */
+        padding: 5px;
+        gap: 5px;
+    }
+
+    .logo {
+        /* Diminui a altura dos logos */
+        height: 45px; 
+        width: auto;
+        margin: 5px 2px;
+    }
+
+    /* 2. LAYOUT DE COLUNAS (Formulário + Imagem) */
+    .parabens-section {
+        /* Faz os itens empilharem verticalmente */
+        flex-direction: column; 
+        padding: 0; /* Remove padding externo para liberar espaço */
+    }
+    
+    /* 3. COLUNAS AGORA OCUPAM A LARGURA MÁXIMA */
+    .texto-container,
+    .banner-img-container,
+    .busca-form-container-wrapper {
+        /* Colunas ocupam 100% da largura */
+        width: 100%;
+        /* CORREÇÃO CRÍTICA: Removendo o padding que causa o scroll horizontal */
+        padding-right: 10px !important; 
+        padding-left: 10px !important;
+        box-sizing: border-box; /* Garante que a largura total seja 100% */
+        margin-bottom: 20px; 
+    }
+
+    /* 4. AJUSTES DE TAMANHOS DENTRO DO MAIN E FORMULÁRIO */
+    main {
+        padding: 0; /* Remove padding do Main para usar 100% da tela */
+    }
+
+    .busca-form-box {
+        padding: 20px; /* Mantém padding interno do formulário */
+        margin: 0 10px; /* Adiciona margem lateral para não colar nas bordas */
+    }
+    
+    .busca-form-box h2 {
+        font-size: 1.4em; /* Reduz o tamanho do título */
+    }
+
+    .btn-principal {
+        font-size: 1.2em; /* Reduz o tamanho do botão */
+        padding: 12px 20px;
+    }
+}

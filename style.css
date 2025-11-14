@@ -1,0 +1,196 @@
+/* GERAL E FUNDO CINZA */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e0e0e0; /* Fundo cinza suave em toda a página */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid #FFD700; /* Borda dourada (cor de ouro) */
+}
+
+/* BARRA DE LOGOS (TAMANHO MÉDIO) */
+.logo-bar {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.logo {
+    height: 90px; /* Tamanho médio solicitado */
+    width: auto;
+    object-fit: contain; 
+}
+
+/* CONTEÚDO PRINCIPAL E AJUSTE DO TEXTO */
+main {
+    max-width: 1000px; 
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* SEÇÃO DE PARABENIZAÇÃO E LAYOUT DE DUAS COLUNAS */
+.parabens-section {
+    display: flex; 
+    flex-wrap: wrap; 
+    background-color: #e2e2e2;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.texto-container {
+    width: 45%; 
+    padding-right: 20px;
+}
+
+.texto-container p {
+    font-size: 20px; 
+    text-align: justify; 
+}
+
+/* BANNER DE IMAGEM */
+.banner-img-container {
+    width: 50%; 
+    margin-bottom: 25px;
+    overflow: hidden; 
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-img {
+    width: 100%;
+    height: auto;
+    display: block; 
+    animation: bounce 4s infinite alternate; 
+}
+
+/* Definição da Animação (Subindo e Descendo em Loop Infinito) */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50px); } 
+}
+
+/* SEÇÃO DE AÇÃO (CONTAINER DOS DOIS BOTÕES) */
+.acao-section {
+    text-align: center;
+    /* Ajustamos o margin para dar espaço ao redor dos botões */
+    margin: 40px 0; 
+    display: flex;
+    flex-direction: column; /* Coloca os botões um embaixo do outro */
+    align-items: center; /* Centraliza os botões */
+    gap: 15px; /* Espaço entre os botões */
+}
+
+/* BOTÃO PRINCIPAL (Dourado - Acessar Certificado) */
+.btn-principal {
+    display: inline-block;
+    background-color: #FFD700; /* Dourado */
+    color: #333; 
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 25px; 
+    font-size: 1.5em; 
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: fit-content; /* Ajusta a largura ao texto */
+}
+
+.btn-principal:hover {
+    background-color: #e6c200; 
+    transform: translateY(-2px); 
+}
+
+/* 🏆 NOVO BOTÃO: Secretaria / SEMJUV 🏆 */
+.btn-secretaria {
+    display: inline-block;
+    background-color: #787879; /* Cor Cinza Escuro para diferenciar do Dourado */
+    color: #fff; /* Texto Branco */
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1.5em; 
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+}
+
+.btn-secretaria:hover {
+    background-color: #6a6a6a; 
+    transform: translateY(-2px); 
+}
+
+/* LINKS DE REDES SOCIAIS */
+.redes-sociais {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.social-links-container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    gap: 10px; 
+    margin-top: 15px;
+}
+
+.social-link {
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start; 
+    text-decoration: none;
+    color: #787879;
+    font-weight: 500;
+    transition: color 0.3s;
+    width: 300px; 
+}
+
+.social-link i {
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+.social-link:hover {
+    color: #f5e503;
+}
+
+
+/* ------------------------------------- */
+/* MEDIA QUERY: AJUSTES PARA CELULAR (RESPONSIVIDADE) */
+/* ------------------------------------- */
+
+@media (max-width: 900px) {
+    /* Em telas menores, as duas colunas se transformam em uma só */
+    .texto-container, .banner-img-container {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    
+    .logo {
+        height: 50px; /* Reduz a altura dos logos no celular */
+    }
+
+    /* Os botões ocupam a largura total no celular */
+    .btn-principal, .btn-secretaria {
+        width: 90%;
+        font-size: 1.2em;
+    }
+}

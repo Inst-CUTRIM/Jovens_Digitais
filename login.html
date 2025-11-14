@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Funcionário - SEMJUV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        /* AVISO: A senha é fixa e visível no código-fonte, não é seguro. */
+        
+        /* CORREÇÃO DO LAYOUT: CONTAINER PRINCIPAL */
+        .login-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px 0;
+        }
+
+        /* CONTEINER GERAL DO LOGIN E IMAGEM (PARA O LAYOUT DE DUAS COLUNAS) */
+        .login-layout {
+            display: flex;
+            max-width: 1000px; 
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+            width: 95%;
+        }
+        
+        /* ÁREA DA IMAGEM (Lado Esquerdo) */
+        .login-image-side {
+            flex: 1;
+            background-color: #FFD700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            min-height: 500px;
+        }
+        
+        .login-image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ÁREA DO FORMULÁRIO (Lado Direito) */
+        .login-form-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .login-form-side h2 {
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        /* Estilos do Formulário */
+        #loginForm {
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+        }
+        
+        .input-group {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .input-login {
+            display: block;
+            width: 100%; 
+            padding: 15px;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        /* Ícone de Olho (Show/Hide Password) */
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #787879;
+        }
+
+        .btn-principal {
+            width: 100%;
+            padding: 15px 0;
+            margin-top: 20px;
+            font-size: 1.2em;
+            background-color: #FFD700; 
+            color: #333;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-principal:hover {
+             background-color: #e6c200;
+        }
+
+        #msgErro {
+            margin-top: 10px;
+            color: red;
+            font-weight: bold;
+        }
+
+        .btn-voltar {
+            display: block;
+            margin-top: 15px;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .btn-voltar:hover {
+            color: #FFD700;
+        }
+
+        /* Adiciona cursor de ponteiro para indicar que a logo é clicável */
+        .logo-bar a img.logo {
+            cursor: pointer;
+        }
+        
+        /* RESPONSIVIDADE: Mudar para uma coluna em telas pequenas */
+        @media(max-width: 800px) {
+            .login-layout {
+                flex-direction: column;
+            }
+            .login-image-side {
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-bar">
+            <a href="index.html"> 
+                <img src="LIMA CAMPOS.png" alt="Logo da Prefeitura" class="logo">
+            </a>
+            <img src="SEMJUV.jpg" alt="Logo SEMJUV" class="logo">
+            <img src="SEMED.jpeg" alt="Logo SMED" class="logo">
+            <img src="CENTRO DE CAPACITAÇÃO PJ.png" alt="Logo CCPJ" class="logo">
+        </div>
+    </header>
+
+    <main>
+        <section class="login-section">
+            <div class="login-layout">
+                
+                <div class="login-image-side">
+                    <img src="farol.jpg" alt="Imagem Flutuante">
+                </div>
+                
+                <div class="login-form-side">
+                    <h2>Acesso Administrativo</h2>
+                    
+                    <form id="loginForm">
+                        <input type="text" id="usuario" placeholder="Usuário" value="SEMJUV" readonly class="input-login">
+                        
+                        <div class="input-group">
+                            <input type="password" id="senha" placeholder="Digite a senha" required class="input-login">
+                            <i class="toggle-password fas fa-eye" id="togglePassword"></i>
+                        </div>
+                        
+                        <button type="submit" class="btn-principal">Entrar</button>
+                        <p id="msgErro"></p>
+                    </form>
+                    
+                    <a href="index.html" class="btn-voltar">Voltar para o Portal Público</a>
+                    
+                    <p class="aviso-seguranca" style="margin-top: 20px; font-size: 0.8em; color: #c0392b;">
+                        ⚠️ Aviso de Segurança: A senha é validada no código JavaScript (inseguro).
+                    </p>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Prefeitura de Lima Campos, SEMD, SEMJUV e CCPJ. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // 1. Lógica do Login
+        document.getElementById('loginForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            
+            const senhaDigitada = document.getElementById('senha').value.trim();
+            const SENHA_CORRETA = "2528"; // Senha fixa conforme solicitado.
+            
+            if(senhaDigitada === SENHA_CORRETA){
+                // Sucesso: Redireciona para a página interna
+                window.location.href = "funcionario.html"; // Redireciona para 'funcionario.html'
+            } else {
+                // Falha
+                document.getElementById('msgErro').innerText = "Senha incorreta!";
+            }
+        });
+        
+        // 2. Lógica do Olho (Show/Hide Password)
+        const togglePassword = document.getElementById('togglePassword');
+        const senhaInput = document.getElementById('senha');
+
+        togglePassword.addEventListener('click', function () {
+            // Alterna o atributo type entre 'password' e 'text'
+            const type = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            senhaInput.setAttribute('type', type);
+            
+            // Alterna o ícone do olho
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>
